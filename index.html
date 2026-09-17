@@ -33,8 +33,78 @@
                           
 
 
+<style>
+  /* H2 ला बटणासारखा लुक देण्यासाठी */
+  h2 {
+    background-color: #f1f1f1;
+    color: #333;
+    padding: 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
 
-    <div> <h1> introduction </h1>
+  /* बाण (Arrow) दाखवण्यासाठी */
+  h2::after {
+    content: '\25BC'; 
+    font-size: 12px;
+    position: absolute;
+    right: 20px;
+  }
+
+  /* विभाग उघडल्यावर बाण वर करण्यासाठी */
+  h2.active::after {
+    content: '\25B2';
+  }
+
+  /* माहितीचा बॉक्स */
+  .content-box {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: white;
+    border-left: 2px solid #f1f1f1;
+    margin-bottom: 10px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Array.from मुळे स्टॅटिक लिस्ट तयार होते, ज्यामुळे लूपमध्ये बग येत नाही
+    var heads = Array.from(document.querySelectorAll("h2"));
+
+    heads.forEach(function(head) {
+      var div = document.createElement("div");
+      div.className = "content-box";
+
+      // H2 च्या खालील सर्व माहिती बॉक्समध्ये टाकणे
+      while (head.nextSibling && head.nextSibling.tagName !== "H2") {
+        div.appendChild(head.nextSibling);
+      }
+
+      head.parentNode.insertBefore(div, head.nextSibling);
+
+      // क्लिक झाल्यावर टॉगल करण्याची सोपी पद्धत
+      head.addEventListener("click", function() {
+        this.classList.toggle("active");
+        if (div.style.display === "block") {
+          div.style.display = "none";
+        } else {
+          div.style.display = "block";
+        }
+      });
+    });
+  });
+</script>
+    
+     <h1> introduction </h1>
     
 <h2>Part 1: The Concept of Immortality and the Mystery of Kali Yuga</h2>
 <p>Welcome to this digital platform that unravels the most profound, mysterious, and captivating concept in Hindu culture, spirituality, and mythological history. In <strong>Sanatan Dharma</strong>, the nature of the universe, time, and the human life cycle have been studied deeply. From this study, we are introduced to the four major epochs: <strong>Satya Yuga</strong>, <strong>Treta Yuga</strong>, <strong>Dvapara Yuga</strong>, and <strong>Kali Yuga</strong>. Every living being born in any era is bound by the rule of death, because 'Jatasya Hi Dhruvo Mrityuh'—meaning death is inevitable for anyone who is born—is the eternal law of nature.</p>
@@ -82,7 +152,7 @@
 <p>So come, let us enter the wonderful and mysterious world of each and every Chiranjivi, one by one!</p>
 
     
-    </div>
+    
 <h1><strong>7 chiranjeevi  list</strong></h1>
 <ul>
 <li>Ashwathama   </li>
